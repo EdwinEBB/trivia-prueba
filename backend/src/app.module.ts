@@ -4,6 +4,8 @@ import { dbt } from 'db/db-fuente';
 import { AuthModule } from './auth/auth.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { ConfigModule } from '@nestjs/config';
+import { PreguntasModule } from './preguntas/preguntas.module';
+import { RankingModule } from './ranking/ranking.module';
 
 @Module({
   imports: [
@@ -11,6 +13,8 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot(dbt),
     AuthModule,
     UsuariosModule,
+    PreguntasModule,
+    RankingModule,
   ],
 })
 export class AppModule {}
