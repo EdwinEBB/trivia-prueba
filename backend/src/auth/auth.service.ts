@@ -23,7 +23,7 @@ export class AuthService {
             throw new UnauthorizedException("Contraseña incorrecta")
         }
 
-        return {access_token:this.jwtservice.sign({userId:usuario.id,nombresuario:usuario.nombreusuario})}
+        return {token:this.jwtservice.sign({id:usuario.id,nombresuario:usuario.nombreusuario})}
     }
 
     async register({nombreusuario,contraseña}:RegisterDto){
