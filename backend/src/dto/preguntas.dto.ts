@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsString, isNotEmpty } from "class-validator";
-
+import { IsNotEmpty, IsString } from "class-validator";
+import { PartialType } from "@nestjs/mapped-types";
 export class CreatePregutnaDto {
     @IsString()
     @IsNotEmpty()
@@ -17,3 +17,6 @@ export class CreatePregutnaDto {
     @IsNotEmpty()
     respuestacorrecta:string;
 }
+
+
+export class UpdatePreguntaDto extends PartialType(CreatePregutnaDto) {}

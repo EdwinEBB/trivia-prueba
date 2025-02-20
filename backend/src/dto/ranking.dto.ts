@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class updatePuntaje {
+export class CreateRankingDto {
 
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
     usuarioId:number
 
