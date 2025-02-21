@@ -13,8 +13,6 @@ export default function Home(){
 
         if(success){
             window.location.href = "/gameQ";
-        }else{
-            
         }
     };
 

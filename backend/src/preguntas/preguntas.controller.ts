@@ -9,7 +9,6 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { PreguntasService } from './preguntas.service';
 import { CreatePregutnaDto, UpdatePreguntaDto } from 'src/dto/preguntas.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guards';

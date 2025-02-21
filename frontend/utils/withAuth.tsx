@@ -2,23 +2,22 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/AuthContext";
 
-const withAuth=(WrappedComponent:any)=> {
-    return (props:any)=>{
-        const {user}=useAuth();
-        const router=useRouter();
-
+const withAuth = (WrappedComponent: any) => {
+    return (props: any) => {
+        const { user, loading } = useAuth();
+        const router = useRouter();
 
         useEffect(() => {
-            if (!user) {
-              router.push("/");
+            if (!loading && !user) {
+                router.push("/");
             }
-          }, [user]);
-      
-          if (!user) return null;
+        }, [user, loading]);
 
-          return <WrappedComponent {...props} />;
+        if (loading) return <p>Cargando...</p>;
+        if (!user) return null;
 
-    }
-}
+        return <WrappedComponent {...props} />;
+    };
+};
 
-export default withAuth
+export default withAuth;
