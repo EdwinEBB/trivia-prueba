@@ -12,6 +12,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { PreguntasService } from './preguntas.service';
 import { CreatePregutnaDto, UpdatePreguntaDto } from 'src/dto/preguntas.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guards';
 
 @Controller('question')
 export class PreguntasController {
@@ -28,13 +29,13 @@ export class PreguntasController {
   }
 
   @Post()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
   async crearpregunta(@Body() createpreguntadto: CreatePregutnaDto) {
     return this.preguntasservice.createPregunta(createpreguntadto);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
   async updatepregunta(
     @Param('id') id: number,
     @Body() updatepreguntadto: UpdatePreguntaDto,
@@ -43,7 +44,7 @@ export class PreguntasController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
   async deletepregunta(@Param('id') id: number) {
     return this.preguntasservice.BorrarPregunta(id);
   }

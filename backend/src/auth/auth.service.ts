@@ -16,14 +16,20 @@ export class AuthService {
     async Login({nombreusuario,contraseña}:LoginDto){
         const usuario= await this.usuarioservice.BuscarporNombreU(nombreusuario)
         if(!usuario){
+            console.log("No usuario")
             throw new UnauthorizedException("Usuario no encontrado")
+           
         }
         const contraextraida=await this.hashservice.CompareContra(contraseña, usuario.contraseña)
         if(!contraextraida){
+            console.log("No contraseña")
             throw new UnauthorizedException("Contraseña incorrecta")
+            
         }
 
-        return {token:this.jwtservice.sign({id:usuario.id,nombresuario:usuario.nombreusuario})}
+        const access_token=this.jwtservice.sign({userId:usuario.id,nombresuario:usuario.nombreusuario})
+
+        return {access_token}
     }
 
     async register({nombreusuario,contraseña}:RegisterDto){
